@@ -76,8 +76,31 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Customer.cs" />
+    <Compile Include="InventoryLevelsPage.xaml.cs">
+      <DependentUpon>InventoryLevelsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logger.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderDetailsPage.xaml.cs">
+      <DependentUpon>OrderDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderHistoryPage.xaml.cs">
+      <DependentUpon>OrderHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderLine.cs" />
+    <Compile Include="OrderLineDetails.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="SalesRecordPage.xaml.cs">
+      <DependentUpon>SalesRecordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SalesScreenPage.xaml.cs">
+      <DependentUpon>SalesScreenPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SqlConnectionHandler.cs" />
+    <Page Include="InventoryLevelsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,7 +113,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OrderDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrderHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SalesRecordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SalesScreenPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

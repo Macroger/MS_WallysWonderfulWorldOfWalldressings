@@ -27,10 +27,11 @@ namespace MS_WallysWonderfulWorldOfWalldressings
         public MainWindow()
         {
             InitializeComponent();
-
             MyConnectionHandler = new SqlConnectionHandler();
 
             UpdateCustomerView();
+
+            MainFrame.Source = new Uri("SalesScreenPage.xaml", UriKind.Relative);
         }
 
         private void AddNewCustomerButton_Click(object sender, RoutedEventArgs e)
@@ -49,18 +50,12 @@ namespace MS_WallysWonderfulWorldOfWalldressings
                 }
                 else
                 {
-                    tbErrorMessages.Foreground = Brushes.Red;
-                    tbErrorMessages.Text = "Unable to Add New Customer. First name fails validation; Ensure it is letters only.";
-                    NewCustomerFirstNameBorder.BorderBrush = Brushes.Red;
-                    NewCustomerFirstNameBorder.BorderThickness = new Thickness(3);
+                    DisplayErrorMessageOnMainWindow("Unable to Add New Customer. First name fails validation; Ensure it is letters only.", NewCustomerFirstNameBorder);
                 }
             }
             else
             {
-                tbErrorMessages.Foreground = Brushes.Red;
-                tbErrorMessages.Text = "Unable to Add New Customer. First name fails validation; Ensure it is letters only.";
-                NewCustomerFirstNameBorder.BorderBrush = Brushes.Red;
-                NewCustomerFirstNameBorder.BorderThickness = new Thickness(3);
+                DisplayErrorMessageOnMainWindow("Unable to Add New Customer. First name fails validation; Ensure it is letters only.", NewCustomerFirstNameBorder);
             }
 
             if(NewCustomerLastNameTextBox.Text.Length > 0)
@@ -72,18 +67,12 @@ namespace MS_WallysWonderfulWorldOfWalldressings
                 }
                 else
                 {
-                    tbErrorMessages.Foreground = Brushes.Red;
-                    tbErrorMessages.Text = "Unable to Add New Customer. Last name fails validation; Ensure it is letters only.";
-                    NewCustomerLastNameBorder.BorderBrush = Brushes.Red;
-                    NewCustomerLastNameBorder.BorderThickness = new Thickness(3);
+                    DisplayErrorMessageOnMainWindow("Unable to Add New Customer. Last name fails validation; Ensure it is letters only.", NewCustomerLastNameBorder);
                 }
             }
             else
             {
-                tbErrorMessages.Foreground = Brushes.Red;
-                tbErrorMessages.Text = "Unable to Add New Customer. Last name length must be greater than 0.";
-                NewCustomerLastNameBorder.BorderBrush = Brushes.Red;
-                NewCustomerLastNameBorder.BorderThickness = new Thickness(3);
+                DisplayErrorMessageOnMainWindow("Unable to Add New Customer. Last name length must be greater than 0.", NewCustomerLastNameBorder);
             }
 
             if(NewCustomerPhoneNumberTextBox.Text.Length > 0)
@@ -95,18 +84,12 @@ namespace MS_WallysWonderfulWorldOfWalldressings
                 }
                 else
                 {
-                    tbErrorMessages.Foreground = Brushes.Red;
-                    tbErrorMessages.Text = "Unable to Add New Customer. Phone number fails validation; Ensure it is numbers only.";
-                    NewCustomerPhoneNumberBorder.BorderBrush = Brushes.Red;
-                    NewCustomerPhoneNumberBorder.BorderThickness = new Thickness(3);
+                    DisplayErrorMessageOnMainWindow("Unable to Add New Customer. Phone number fails validation; Ensure it is numbers only.", NewCustomerPhoneNumberBorder);
                 }
             }
             else
             {
-                tbErrorMessages.Foreground = Brushes.Red;
-                tbErrorMessages.Text = "Unable to Add New Customer. Phone number length must be greater than 0.";
-                NewCustomerPhoneNumberBorder. BorderBrush = Brushes.Red;
-                NewCustomerPhoneNumberBorder.BorderThickness = new Thickness(3);
+                DisplayErrorMessageOnMainWindow("Unable to Add New Customer. Phone number length must be greater than 0.", NewCustomerPhoneNumberBorder);
             }
 
             if(FirstNamePassesValidation == true && LastNamePassesValidation == true && PhoneNumberPassesValidation == true)
@@ -151,6 +134,7 @@ namespace MS_WallysWonderfulWorldOfWalldressings
             }
         }
 
+
         private string AdjustPhoneNumberBeforeInserting(string PhoneNumberToAdjust)
         {
             string AdjustedPhoneNumber = String.Empty;
@@ -162,18 +146,38 @@ namespace MS_WallysWonderfulWorldOfWalldressings
             return AdjustedPhoneNumber;
         }
 
+
         private void ViewInventoryLevelsButton_Click(object sender, RoutedEventArgs e)
         {
+            Object PageBeingShownInFrame = MainFrame.Content.GetType();
 
+            // Here is where the logic is built to differentiate how the system handles clicking a customer name depending on the currently loaded frame page.
+            if (PageBeingShownInFrame.ToString() == "MS_WallysWonderfulWorldOfWalldressings.InventoryLevelsPage")
+            {
+                DisplayErrorMessageOnMainWindow("Unable to switch to Inventory Levels Page - already on it.", null);
+            }
+            else
+            {
+                MainFrame.Source = new Uri("InventoryLevelsPage.xaml", UriKind.Relative);
+            }
         }
+
 
         private void ViewOrderHistoryButton_Click(object sender, RoutedEventArgs e)
         {
-            OrderHistory oh = new OrderHistory();
-            oh.Show();
+            Object PageBeingShownInFrame = MainFrame.Content.GetType();
 
-            this.Close();
+            // Here is where the logic is built to differentiate how the system handles clicking a customer name depending on the currently loaded frame page.
+            if (PageBeingShownInFrame.ToString() == "MS_WallysWonderfulWorldOfWalldressings.OrderHistoryPage")
+            {
+                DisplayErrorMessageOnMainWindow("Unable to switch to Order History Page - already on Order History Page.", null);
+            }
+            else
+            {
+                MainFrame.Source = new Uri("OrderHistoryPage.xaml", UriKind.Relative);
+            }
         }
+
 
         private void UpdateCustomerView()
         {
@@ -198,6 +202,8 @@ namespace MS_WallysWonderfulWorldOfWalldressings
 
             return Result;
         }
+
+
         private bool ValidateNewCustomerName(string NameToValidate)
         {
             bool Result = false;
@@ -227,6 +233,7 @@ namespace MS_WallysWonderfulWorldOfWalldressings
             }
         }
 
+
         private void NewCustomerPhoneNumberTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (tbErrorMessages.Text.Length > 0 && tbErrorMessages.Foreground == Brushes.Red)
@@ -239,6 +246,7 @@ namespace MS_WallysWonderfulWorldOfWalldressings
             }
         }
 
+
         private void NewCustomerFirstNameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (tbErrorMessages.Text.Length > 0 && tbErrorMessages.Foreground == Brushes.Red)
@@ -250,5 +258,106 @@ namespace MS_WallysWonderfulWorldOfWalldressings
                 NewCustomerFirstNameBorder.BorderThickness = new Thickness(0);
             }
         }
+
+
+        private void DisplayErrorMessageOnMainWindow(string ErrorMessage, Border BorderToHighlightRed)
+        {
+            tbErrorMessages.Foreground = Brushes.Red;
+            tbErrorMessages.Text = ErrorMessage;
+
+            if(BorderToHighlightRed != null)
+            {
+                BorderToHighlightRed.BorderBrush = Brushes.Red;
+                BorderToHighlightRed.BorderThickness = new Thickness(3);
+            }
+        }
+
+
+        private void CustomerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox EventOriginator = sender as ListBox;
+
+            if (EventOriginator != null)
+            {
+                Customer EventOriginatorItem = EventOriginator.SelectedItem as Customer;
+
+                if (EventOriginatorItem != null)
+                {
+                    Object PageBeingShownInFrame = MainFrame.Content.GetType();
+
+                    // Here is where the logic is built to differentiate how the system handles clicking a customer name depending on the currently loaded frame page.
+                    if (PageBeingShownInFrame.ToString() == "MS_WallysWonderfulWorldOfWalldressings.SalesScreenPage")
+                    {
+                        //MessageBox.Show(PageBeingShownInFrame.ToString());
+
+                        Page SalesScreenPage = MainFrame.Content as Page;
+
+                        TextBlock SalesScreenCustomerFirstNameTextBox = (TextBlock)SalesScreenPage.FindName("SalesScreenCustomerFirstNameTextBox");
+                        TextBlock SalesScreenCustomerLastNameTextBox = (TextBlock)SalesScreenPage.FindName("SalesScreenCustomerLastNameTextBox");
+                        TextBlock SalesScreenCustomerPhoneNumberTextBox = (TextBlock)SalesScreenPage.FindName("SalesScreenCustomerPhoneNumberTextBox");
+                        TextBlock CustomerSelectedTextBlock = (TextBlock)SalesScreenPage.FindName("CustomerSelectedTextBlock");
+
+                        SalesScreenCustomerFirstNameTextBox.Text = EventOriginatorItem.FirstName;
+                        SalesScreenCustomerLastNameTextBox.Text = EventOriginatorItem.LastName;
+                        SalesScreenCustomerPhoneNumberTextBox.Text = EventOriginatorItem.PhoneNumber;
+
+                        CustomerSelectedTextBlock.Text = EventOriginatorItem.FirstName + " " + EventOriginatorItem.LastName;
+                    }
+                }
+            }
+        }
+
+
+        private void SearchCustomersButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool IsValidName = ValidateNewCustomerName(CustomerSearchBox.Text);
+
+            bool IsValidPhoneNumber = ValidateNewCustomerPhoneNumber(CustomerSearchBox.Text);
+
+            if(IsValidPhoneNumber == true )
+            {
+                string AdjustedPhoneNumber = AdjustPhoneNumberBeforeInserting(CustomerSearchBox.Text);
+                foreach (Customer cst in CustomerListBox.Items)
+                {
+                    if(AdjustedPhoneNumber == cst.PhoneNumber)
+                    {
+                        // Match found - highlight the selected customer in the customer navigator and move credentials over to the Sales Screen.
+                        CustomerListBox.SelectedItem = cst;
+                    }
+                }
+            }
+            else if( IsValidName == true)
+            {
+                foreach (Customer cst in CustomerListBox.Items)
+                {
+                    if (CustomerSearchBox.Text == cst.LastName)
+                    {
+                        // Match found - highlight the selected customer in the customer navigator and move credentials over to the Sales Screen.
+                        CustomerListBox.SelectedItem = cst;
+                    }
+                }
+            }
+            else
+            {
+                DisplayErrorMessageOnMainWindow("Unable to find customers matching search string.", null);
+            }
+        }
+
+        private void ViewSalesScreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            Object PageBeingShownInFrame = MainFrame.Content.GetType();
+
+            // Here is where the logic is built to differentiate how the system handles clicking a customer name depending on the currently loaded frame page.
+            if (PageBeingShownInFrame.ToString() == "MS_WallysWonderfulWorldOfWalldressings.SalesScreenPage")
+            {
+                DisplayErrorMessageOnMainWindow("Unable to switch to Sales Screen - already on Sales Screen.", null);
+            }
+            else
+            {
+                MainFrame.Source = new Uri("SalesScreenPage.xaml", UriKind.Relative);
+            }
+           
+        }
     }
+
 }

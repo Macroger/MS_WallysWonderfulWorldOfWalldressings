@@ -10,27 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MS_WallysWonderfulWorldOfWalldressings
 {
     /// <summary>
-    /// Interaction logic for OrderHistory.xaml
+    /// Interaction logic for InventoryLevelsPage.xaml
     /// </summary>
-    public partial class OrderHistory : Window
+    
+    public partial class InventoryLevelsPage : Page
     {
-        public OrderHistory()
+
+        private SqlConnectionHandler MyConnectionHandler;
+        public InventoryLevelsPage()
         {
             InitializeComponent();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+            MyConnectionHandler = new SqlConnectionHandler();
 
-        }
+            StockLevelsDataGrid.ItemsSource = MyConnectionHandler.GetAllProducts();
 
-        private void ReturnMainMenuButton_Click(object sender, RoutedEventArgs e)
-        {
+
         }
     }
 }

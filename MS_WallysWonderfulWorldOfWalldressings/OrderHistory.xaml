@@ -8,7 +8,7 @@
         Title="OrderHistory"
         Height="450"
         Width="800"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
