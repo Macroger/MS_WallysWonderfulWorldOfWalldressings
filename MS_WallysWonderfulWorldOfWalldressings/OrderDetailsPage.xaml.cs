@@ -45,7 +45,7 @@ namespace MS_WallysWonderfulWorldOfWalldressings
             OrderedAtBranchTextBlock.Text = TargetOrder.BranchName;
             OrderTotalPriceTextBlock.Text = "$" + TargetOrder.sPrice.ToString();
 
-            OrderDateTextBlock.Text = TargetOrder.OrderDate.ToShortDateString();
+            OrderDateTextBlock.Text = TargetOrder.OrderDate;
             OrderStatusTextBlock.Text = TargetOrder.OrderStatus;
             
             if(TargetOrder.OrderStatus == "RFND")

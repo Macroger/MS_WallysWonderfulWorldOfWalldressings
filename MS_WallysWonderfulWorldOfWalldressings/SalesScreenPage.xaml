@@ -158,8 +158,8 @@
                                         Grid.Column="0"
                                         Grid.ColumnSpan="2"
                                         VerticalAlignment="Center"
-                                        Width="24"
-                                        MaxLength="3"
+                                        Width="28"
+                                        MaxLength="4"
                                         TextAlignment="Right"
                                         Text="0"/>
 
@@ -286,8 +286,8 @@
 
                     </Border>
 
-                    <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right">Subtotal:</Label>
-                    <Label Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right">Tax (13%):</Label>
+                    <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">Subtotal:</Label>
+                    <Label Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">Tax (13%):</Label>
 
                     <StackPanel Grid.Row="5" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Final Total:</Label>

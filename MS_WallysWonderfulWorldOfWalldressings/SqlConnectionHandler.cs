@@ -172,7 +172,7 @@ namespace MS_WallysWonderfulWorldOfWalldressings
                             tmp.CustomerName = MyReader.GetString(2);
                             tmp.BranchID = MyReader.GetInt16(3);
                             tmp.BranchName = MyReader.GetString(4);    
-                            tmp.OrderDate = MyReader.GetDateTime(5);
+                            tmp.OrderDate = MyReader.GetDateTime(5).ToShortDateString();
                             tmp.OrderStatus = MyReader.GetString(6);
                             tmp.sPrice = MyReader.GetDecimal(7).ToString();
 
@@ -234,7 +234,7 @@ namespace MS_WallysWonderfulWorldOfWalldressings
                             TmpOrder.CustomerID = MyReader.GetInt16(0);
                             TmpOrder.CustomerName = MyReader.GetString(1);
                             TmpOrder.BranchName = MyReader.GetString(2);
-                            TmpOrder.OrderDate = MyReader.GetDateTime(3);
+                            TmpOrder.OrderDate = MyReader.GetDateTime(3).ToShortDateString();
                             TmpOrder.OrderStatus = MyReader.GetString(4);
                             TmpOrder.sPrice = MyReader.GetDecimal(5).ToString("N2");
 

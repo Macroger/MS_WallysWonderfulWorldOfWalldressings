@@ -71,7 +71,7 @@
                         <DataGridTextColumn Header="Customer Name" Binding="{Binding CustomerName}" IsReadOnly="True" CanUserReorder="True" Width="*"/>
                         
                         <DataGridTextColumn Header="Branch Name" Binding="{Binding BranchName}" IsReadOnly="True" CanUserReorder="True" Width="*"/>
-                        <DataGridTextColumn Header="Order Date" Binding="{Binding OrderDate}" IsReadOnly="True" CanUserReorder="True" Width="auto"/>
+                        <DataGridTextColumn Header="Order Date" Binding="{Binding OrderDate}" IsReadOnly="True" CanUserReorder="True" Width="*"/>
 
                         <DataGridTextColumn Header="Final Price" Binding="{Binding sPrice, StringFormat=N2}" IsReadOnly="True" CanUserReorder="True" Width="auto"/>
                         <DataGridTextColumn Header="Order Status" Binding="{Binding OrderStatus}" IsReadOnly="True" CanUserReorder="True" Width="auto"/>

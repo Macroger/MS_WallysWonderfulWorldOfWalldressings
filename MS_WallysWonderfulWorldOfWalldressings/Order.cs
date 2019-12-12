@@ -18,7 +18,7 @@ namespace MS_WallysWonderfulWorldOfWalldressings
 
         public string BranchName { get; set; }
 
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
 
         public string OrderStatus { get; set; }
 
